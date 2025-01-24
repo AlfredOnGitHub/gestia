@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestia{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/inventario/">Inventario</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+                {% endif %}
+                <li><a href="/auth_user/">Registrarse</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>© 2025 Mi Proyecto</p>
+    </footer>
+</body>
+</html>
